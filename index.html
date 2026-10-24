@@ -1,0 +1,2606 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Programming Lab Record Portfolio — V. Chandan Raj Kumar (25EU02128)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   CSS CUSTOM PROPERTIES & GLASSMORPHIC SYSTEM
+   ═══════════════════════════════════════════ */
+:root {
+  --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+}
+
+/* Dark Theme (Default) */
+[data-theme="dark"] {
+  --bg-base: #070a12;
+  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(30, 58, 138, 0.25) 0%, transparent 45%),
+                 radial-gradient(circle at 85% 85%, rgba(88, 28, 135, 0.2) 0%, transparent 50%),
+                 #070a12;
+  --bg-glass: rgba(15, 23, 42, 0.72);
+  --bg-glass-card: rgba(15, 23, 42, 0.78);
+  --bg-glass-subtle: rgba(30, 41, 59, 0.5);
+  --bg-glass-hover: rgba(30, 41, 59, 0.85);
+  --bg-input: rgba(15, 23, 42, 0.6);
+  --border-glass: rgba(99, 102, 241, 0.28);
+  --border-glass-subtle: rgba(99, 102, 241, 0.15);
+  --border-glow: rgba(56, 189, 248, 0.45);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-accent: #38bdf8;
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --accent-glow: rgba(99, 102, 241, 0.35);
+  --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.55), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+  --shadow-elevated: 0 25px 65px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.15);
+  --shadow-glow: 0 0 30px rgba(56, 189, 248, 0.45);
+  --code-bg: #090d16;
+  --viewer-inner-bg: #080c14;
+  --pill-bg: rgba(99, 102, 241, 0.15);
+  --pill-text: #a5b4fc;
+  --pill-border: rgba(99, 102, 241, 0.3);
+  --scrollbar-thumb: rgba(99, 102, 241, 0.35);
+  --header-bg: rgba(7, 10, 18, 0.85);
+  --doc-header-bg: rgba(99, 102, 241, 0.08);
+  --tag-pdf: rgba(16, 185, 129, 0.18);
+  --tag-pdf-text: #34d399;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg-base: #e8ecf2;
+  --bg-gradient: radial-gradient(circle at 10% 10%, rgba(219, 234, 254, 0.8) 0%, transparent 40%),
+                 radial-gradient(circle at 90% 90%, rgba(237, 233, 254, 0.8) 0%, transparent 40%),
+                 #e8ecf2;
+  --bg-glass: rgba(255, 255, 255, 0.65);
+  --bg-glass-card: rgba(255, 255, 255, 0.78);
+  --bg-glass-subtle: rgba(241, 245, 249, 0.7);
+  --bg-glass-hover: rgba(255, 255, 255, 0.95);
+  --bg-input: rgba(255, 255, 255, 0.75);
+  --border-glass: rgba(148, 163, 184, 0.4);
+  --border-glass-subtle: rgba(148, 163, 184, 0.22);
+  --border-glow: rgba(59, 130, 246, 0.35);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-accent: #2563eb;
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --accent-glow: rgba(59, 130, 246, 0.25);
+  --shadow-card: 0 10px 35px -10px rgba(100, 116, 139, 0.18), 0 0 1px 1px rgba(255, 255, 255, 0.9);
+  --shadow-elevated: 0 25px 60px -15px rgba(100, 116, 139, 0.25);
+  --shadow-glow: 0 0 28px rgba(59, 130, 246, 0.35);
+  --code-bg: #1e293b;
+  --viewer-inner-bg: #1e293b;
+  --pill-bg: rgba(59, 130, 246, 0.1);
+  --pill-text: #2563eb;
+  --pill-border: rgba(59, 130, 246, 0.3);
+  --scrollbar-thumb: rgba(148, 163, 184, 0.45);
+  --header-bg: rgba(232, 236, 242, 0.85);
+  --doc-header-bg: rgba(59, 130, 246, 0.08);
+  --tag-pdf: rgba(5, 150, 105, 0.15);
+  --tag-pdf-text: #059669;
+}
+
+/* ═══════════════════════════════════════════
+   BASE & RESET
+   ═══════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: var(--transition-smooth);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-accent); }
+
+/* ═══════════════════════════════════════════
+   TOP NAVIGATION BAR
+   ═══════════════════════════════════════════ */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 60px;
+  background: var(--header-bg);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid var(--border-glass-subtle);
+  transition: var(--transition-smooth);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+}
+
+.nav-brand-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--text-accent);
+  filter: drop-shadow(0 0 8px var(--text-accent));
+}
+
+.brand-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-gradient);
+  color: #fff;
+  letter-spacing: 0.8px;
+}
+
+/* Center Theme Switcher */
+.theme-switch-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-glass-subtle);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glass-subtle);
+}
+
+.theme-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  user-select: none;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  box-shadow: 0 2px 8px var(--accent-glow);
+  transition: var(--transition-smooth);
+}
+
+[data-theme="light"] .theme-toggle::after {
+  transform: translateX(24px);
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+}
+
+.theme-toggle .icon-moon,
+.theme-toggle .icon-sun {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+  pointer-events: none;
+}
+.theme-toggle .icon-moon { left: 5px; color: #a5b4fc; }
+.theme-toggle .icon-sun { right: 5px; color: #f59e0b; }
+
+/* Nav Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glass);
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  font-family: var(--font-sans);
+}
+
+.nav-pill-btn:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--text-accent);
+  color: var(--text-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+.nav-pill-btn.primary {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: #fff;
+}
+
+.nav-pill-btn.primary:hover {
+  background: var(--accent-gradient-hover);
+  color: #fff;
+  box-shadow: 0 6px 18px var(--accent-glow);
+}
+
+.nav-pill-btn svg { width: 15px; height: 15px; }
+
+/* ═══════════════════════════════════════════
+   MAIN LAYOUT CONTAINER
+   ═══════════════════════════════════════════ */
+.container {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+/* Glass Card Base */
+.glass-card {
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(18px) saturate(1.7);
+  -webkit-backdrop-filter: blur(18px) saturate(1.7);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   STUDENT PROFILE BANNER
+   ═══════════════════════════════════════════ */
+.profile-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 30px 40px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-banner::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -50px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.profile-main-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Photo Frame */
+.profile-photo-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-photo-container {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6, #3b82f6);
+  box-shadow: var(--shadow-glow);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.profile-photo-container:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.65);
+}
+
+.profile-photo-container::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 2px dashed rgba(56, 189, 248, 0.4);
+  animation: rotateGlow 20s linear infinite;
+}
+
+@keyframes rotateGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-glass-subtle);
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition-smooth);
+  pointer-events: none;
+}
+
+.profile-photo-container:hover .photo-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photo-overlay svg { width: 22px; height: 22px; color: #fff; margin-bottom: 4px; }
+.photo-overlay span { font-size: 10px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+
+#photoUpload { display: none; }
+
+/* Student Details */
+.student-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.student-title-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.student-name {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.student-meta-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 2px;
+}
+
+.meta-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-glass-subtle);
+  padding: 5px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass-subtle);
+}
+
+.meta-pill .label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  letter-spacing: 1px;
+}
+
+.meta-pill .val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Profile Right Stats */
+.profile-stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-box {
+  background: var(--bg-glass-subtle);
+  border: 1px solid var(--border-glass-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.stat-num {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   WEEKLY LAB NAVIGATION BAR
+   ═══════════════════════════════════════════ */
+.week-nav {
+  padding: 14px 20px;
+  margin-bottom: 22px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.week-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: max-content;
+}
+
+.week-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glass-subtle);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.week-pill:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--border-glass);
+  transform: translateY(-2px);
+}
+
+.week-pill.active {
+  background: var(--accent-gradient);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.week-pill .pdf-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.week-pill.active .pdf-dot {
+  background: #fff;
+  box-shadow: 0 0 8px #fff;
+}
+
+/* ═══════════════════════════════════════════
+   SPLIT-VIEW / EXPANDABLE WORKSPACE
+   ═══════════════════════════════════════════ */
+.workspace {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 22px;
+  align-items: start;
+  transition: var(--transition-smooth);
+}
+
+/* Maximized / Full-width Document Viewer state */
+.workspace.maximized {
+  grid-template-columns: 1fr;
+}
+
+.workspace.maximized .summary-card {
+  display: none;
+}
+
+/* ── Left: Executive Summary Card ── */
+.summary-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  background: var(--doc-header-bg);
+  border-bottom: 1px solid var(--border-glass-subtle);
+}
+
+.card-topbar-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--text-tertiary);
+}
+
+.summary-content {
+  padding: 24px 22px;
+  animation: fadeSlideUp 0.35s ease-out;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.summary-week-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.summary-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+
+.summary-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+
+.program-list {
+  list-style: none;
+  margin-bottom: 22px;
+}
+
+.program-list li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.program-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  font-size: 10px;
+  color: var(--text-accent);
+  top: 8px;
+}
+
+.concept-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.concept-tag {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  color: var(--pill-text);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: var(--transition-smooth);
+}
+
+.concept-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+/* ── Right: Large Interactive Document Viewer ── */
+.viewer-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 800px;
+}
+
+.viewer-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 24px;
+  background: var(--doc-header-bg);
+  border-bottom: 1px solid var(--border-glass-subtle);
+}
+
+.viewer-title-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.viewer-tabs {
+  display: flex;
+  align-items: center;
+  background: var(--bg-input);
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glass-subtle);
+}
+
+.viewer-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-family: var(--font-sans);
+}
+
+.viewer-tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.viewer-tab-btn.active {
+  background: var(--accent-gradient);
+  color: #fff;
+  box-shadow: 0 2px 10px var(--accent-glow);
+}
+
+.viewer-tab-btn svg { width: 14px; height: 14px; }
+
+/* Viewer Right Controls */
+.viewer-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass-subtle);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-family: var(--font-sans);
+  text-decoration: none;
+}
+
+.action-btn:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-accent);
+  border-color: var(--border-glass);
+  transform: translateY(-1px);
+}
+
+.action-btn.active-toggle {
+  background: var(--accent-gradient);
+  color: #fff;
+  border-color: transparent;
+}
+
+.action-btn svg { width: 14px; height: 14px; }
+
+/* ── Viewer Frame Inner Container ── */
+.viewer-body {
+  position: relative;
+  flex: 1;
+  background: var(--viewer-inner-bg);
+  min-height: 720px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* PDF View Container */
+.pdf-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 740px;
+  display: none;
+  position: relative;
+}
+
+.pdf-container.active-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.pdf-iframe {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-height: 740px;
+  border: none;
+  background: #1e293b;
+}
+
+.pdf-banner-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid var(--border-glass-subtle);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.pdf-banner-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdf-banner-status .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: var(--tag-pdf);
+  color: var(--tag-pdf-text);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+}
+
+/* Interactive Code / Document View Container */
+.doc-sheet-container {
+  flex: 1;
+  padding: 36px 32px;
+  overflow-y: auto;
+  max-height: 820px;
+  display: none;
+}
+
+.doc-sheet-container.active-view {
+  display: block;
+}
+
+/* Document Header (Academic Style) */
+.doc-academic-header {
+  text-align: center;
+  padding-bottom: 24px;
+  margin-bottom: 28px;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.25);
+  position: relative;
+}
+
+.doc-academic-header h2 {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.doc-academic-header .subheading {
+  font-size: 13px;
+  color: #94a3b8;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Meta Table */
+.academic-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 28px;
+  font-size: 13px;
+}
+
+.academic-table td {
+  padding: 8px 14px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #e2e8f0;
+}
+
+.academic-table .th-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #94a3b8;
+  background: rgba(99, 102, 241, 0.08);
+  width: 120px;
+}
+
+/* Program Item Block */
+.doc-prog-block {
+  margin-bottom: 34px;
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  padding: 22px;
+}
+
+.doc-prog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.doc-prog-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #a5b4fc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doc-prog-title .prog-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.copy-code-btn {
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  background: rgba(15, 23, 42, 0.8);
+  color: #94a3b8;
+  font-size: 11px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.copy-code-btn:hover {
+  color: #fff;
+  background: var(--accent-gradient);
+}
+
+.doc-prog-problem {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #94a3b8;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.code-container {
+  background: #060911;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: #f1f5f9;
+}
+
+/* Syntax Highlighting */
+.kw { color: #c084fc; font-weight: 600; }
+.type { color: #38bdf8; }
+.str { color: #34d399; }
+.num { color: #fb923c; }
+.cmt { color: #64748b; font-style: italic; }
+.fn { color: #fbbf24; }
+.pkg { color: #f43f5e; }
+
+.output-container {
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px dashed rgba(52, 211, 153, 0.35);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #34d399;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.output-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #10b981;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ═══════════════════════════════════════════
+   FULL LAB FILES VAULT MODAL
+   ═══════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-dialog {
+  width: 94vw;
+  max-width: 980px;
+  max-height: 88vh;
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-elevated);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  background: var(--doc-header-bg);
+  border-bottom: 1px solid var(--border-glass-subtle);
+}
+
+.modal-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modal-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border-glass);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.modal-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.modal-body {
+  padding: 24px 28px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Files Vault Grid */
+.vault-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: var(--bg-glass-subtle);
+  border: 1px solid var(--border-glass-subtle);
+  padding: 18px 24px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+}
+
+.vault-banner-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.vault-banner-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.files-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.file-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: var(--bg-glass-subtle);
+  border: 1px solid var(--border-glass-subtle);
+  transition: var(--transition-smooth);
+}
+
+.file-item-card:hover {
+  border-color: var(--text-accent);
+  transform: translateY(-2px);
+  background: var(--bg-glass-hover);
+}
+
+.file-meta-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.file-texts .file-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.file-texts .file-sub {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.file-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.file-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-glass-subtle);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.file-btn:hover {
+  color: var(--text-accent);
+  background: var(--bg-glass-hover);
+}
+
+/* ═══════════════════════════════════════════
+   TOAST NOTIFICATION
+   ═══════════════════════════════════════════ */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: var(--shadow-elevated);
+  z-index: 3000;
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.toast-notice.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE QUERIES
+   ═══════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .workspace { grid-template-columns: 340px 1fr; }
+}
+
+@media (max-width: 960px) {
+  .workspace { grid-template-columns: 1fr; }
+  .profile-banner { flex-direction: column; text-align: center; }
+  .profile-main-group { flex-direction: column; gap: 20px; }
+  .student-meta-strip { justify-content: center; }
+  .profile-stats { width: 100%; justify-content: center; }
+  .top-nav { padding: 0 16px; }
+  .container { padding: 16px 14px 40px; }
+}
+
+@media (max-width: 640px) {
+  .nav-brand span { display: none; }
+  .theme-label { display: none; }
+  .student-name { font-size: 24px; }
+  .profile-photo-container { width: 110px; height: 110px; }
+  .viewer-topbar { flex-direction: column; align-items: flex-start; }
+  .viewer-actions { width: 100%; justify-content: space-between; }
+  .doc-sheet-container { padding: 20px 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     TOP NAVIGATION BAR
+     ═══════════════════════════════════════════ -->
+<nav class="top-nav">
+  <a href="#" class="nav-brand">
+    <svg class="nav-brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2z"/>
+    </svg>
+    <span>Java Lab Record</span>
+    <span class="brand-badge">AIML 2025–26</span>
+  </a>
+
+  <!-- Center Theme Switcher -->
+  <div class="theme-switch-container">
+    <span class="theme-label">Dark</span>
+    <div class="theme-toggle" id="themeToggle" role="switch" aria-checked="true" tabindex="0" title="Toggle Light / Dark Mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+    </div>
+    <span class="theme-label">Light</span>
+  </div>
+
+  <!-- Right Actions -->
+  <div class="nav-actions">
+    <button class="nav-pill-btn" onclick="openVaultModal()" title="View and download all 10 Lab PDFs">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span>All Lab PDFs (10)</span>
+    </button>
+    <a href="./docs/All_Java_Lab_Records_Chandan.zip" download="All_Java_Lab_Records_Chandan.zip" class="nav-pill-btn primary" title="Download Complete Lab Package ZIP">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Download ZIP</span>
+    </a>
+    <button class="nav-pill-btn" onclick="copyPortfolioLink()" title="Copy Link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     MAIN WORKSPACE
+     ═══════════════════════════════════════════ -->
+<main class="container">
+
+  <!-- Student Profile Banner -->
+  <section class="glass-card profile-banner">
+    <div class="profile-main-group">
+      <!-- Photo Frame -->
+      <div class="profile-photo-wrap">
+        <div class="profile-photo-container" onclick="document.getElementById('photoUpload').click()" title="Click to change photo">
+          <img class="profile-photo" id="profilePhoto" src="chandan.jpg" alt="V. Chandan Raj Kumar"
+               onerror="this.src='https://ui-avatars.com/api/?name=Chandan+Raj+Kumar&background=3b82f6&color=fff&size=200';">
+          <div class="photo-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Change</span>
+          </div>
+        </div>
+        <input type="file" id="photoUpload" accept="image/*">
+      </div>
+
+      <!-- Credentials -->
+      <div class="student-details">
+        <div class="student-title-badge">
+          <span>Department of Computer Science & Engineering</span>
+        </div>
+        <h1 class="student-name">V. Chandan Raj Kumar</h1>
+        <div class="student-meta-strip">
+          <div class="meta-pill">
+            <span class="label">Roll No</span>
+            <span class="val">25EU02128</span>
+          </div>
+          <div class="meta-pill">
+            <span class="label">Branch</span>
+            <span class="val">AIML</span>
+          </div>
+          <div class="meta-pill">
+            <span class="label">Section</span>
+            <span class="val">B</span>
+          </div>
+          <div class="meta-pill">
+            <span class="label">Course</span>
+            <span class="val">Java Programming Lab</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="profile-stats">
+      <div class="stat-box">
+        <div class="stat-num" id="statCompleted">10/12</div>
+        <div class="stat-label">PDFs Uploaded</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">45+</div>
+        <div class="stat-label">Programs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horizontal Weekly Navigation Bar -->
+  <nav class="glass-card week-nav">
+    <div class="week-nav-inner" id="weekNavButtons">
+      <!-- Generated via JS -->
+    </div>
+  </nav>
+
+  <!-- Split-View / Expandable Workspace -->
+  <div class="workspace" id="mainWorkspace">
+
+    <!-- Left: Lab Executive Summary -->
+    <div class="glass-card summary-card" id="summaryCard">
+      <div class="card-topbar">
+        <span class="card-topbar-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Executive Summary
+        </span>
+        <span class="brand-badge" id="summaryWeekBadge">Week 1</span>
+      </div>
+      <div class="summary-content" id="summaryBody">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
+    <!-- Right: LARGE Interactive Document Viewer -->
+    <div class="glass-card viewer-card" id="viewerCard">
+      <div class="viewer-topbar">
+        <div class="viewer-title-group">
+          <!-- View Switcher Tabs -->
+          <div class="viewer-tabs">
+            <button class="viewer-tab-btn active" id="tabPdfBtn" onclick="switchViewerMode('pdf')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Original PDF Document</span>
+            </button>
+            <button class="viewer-tab-btn" id="tabCodeBtn" onclick="switchViewerMode('code')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <span>Interactive Code Sheet</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Viewer Controls -->
+        <div class="viewer-actions">
+          <button class="action-btn" id="expandToggleBtn" onclick="toggleMaximizeViewer()" title="Toggle Full Width / Split View">
+            <svg id="expandIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            <span id="expandBtnText">Maximize</span>
+          </button>
+          <button class="action-btn" onclick="openNewTab()" title="Open PDF or Printable Document in New Browser Tab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>New Tab</span>
+          </button>
+          <button class="action-btn" onclick="downloadCurrentLab()" title="Download Official PDF for this week">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download</span>
+          </button>
+          <button class="action-btn" onclick="openFullscreenModal()" title="View Fullscreen Modal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <span>Fullscreen</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Large Viewer Body -->
+      <div class="viewer-body">
+        <!-- PDF Embedded Viewer (Default) -->
+        <div class="pdf-container active-view" id="pdfViewContainer">
+          <div class="pdf-banner-bar">
+            <div class="pdf-banner-status">
+              <span class="badge">Official Submitted PDF</span>
+              <span id="pdfFileNameDisplay">docs/week1.pdf</span>
+            </div>
+            <a href="#" id="pdfDirectLink" target="_blank" style="color:var(--text-accent); text-decoration:none; font-size:11px;">Open In Dedicated Tab ↗</a>
+          </div>
+          <iframe id="pdfIframe" class="pdf-iframe" src="./docs/week1.pdf" title="Lab PDF Document"></iframe>
+        </div>
+
+        <!-- Formatted Interactive Document Sheet -->
+        <div class="doc-sheet-container" id="codeViewContainer">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ═══════════════════════════════════════════
+     ALL FILES VAULT MODAL
+     ═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="vaultModal" onclick="closeVaultModal(event)">
+  <div class="modal-dialog" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <h2 class="modal-title">All Uploaded Lab Record PDF Documents</h2>
+      </div>
+      <button class="modal-close-btn" onclick="closeVaultModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="vault-banner">
+        <div class="vault-banner-info">
+          <h3>Official Java Programming Lab Records (Weeks 1 – 10)</h3>
+          <p>Every submitted PDF document is archived, verified, and downloadable individually or bundled as a single package.</p>
+        </div>
+        <a href="./docs/All_Java_Lab_Records_Chandan.zip" download="All_Java_Lab_Records_Chandan.zip" class="nav-pill-btn primary" style="padding:10px 22px; font-size:13px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download All PDFs (ZIP • 4.1 MB)
+        </a>
+      </div>
+
+      <div class="files-grid" id="vaultFilesGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FULLSCREEN LAB SHEET MODAL
+     ═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="fullscreenModal" onclick="closeFullscreenModal(event)">
+  <div class="modal-dialog" style="width:96vw; max-width:1300px; height:92vh;" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title" id="fsModalTitle">Week Lab Record</h2>
+      <button class="modal-close-btn" onclick="closeFullscreenModal()">✕</button>
+    </div>
+    <div class="modal-body" id="fsModalBody" style="padding:28px 36px;">
+      <!-- Content populated via JS -->
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-notice" id="toastNotice"></div>
+
+<!-- ═══════════════════════════════════════════
+     COMPREHENSIVE JAVASCRIPT DATASET & LOGIC
+     ═══════════════════════════════════════════ -->
+<script>
+// ─── Complete 12-Week Curriculum grounded in uploaded PDFs ───
+const labDataset = [
+  {
+    week: 1,
+    title: "Comparative Study of Java & Modern Languages",
+    pdfFile: "week1.pdf",
+    hasPdf: true,
+    fileSize: "112 KB",
+    syllabusRef: "Unit 1: Language Comparative Analysis",
+    summary: "Comprehensive comparative investigation contrasting Java with C, C++, Python, and JavaScript across architectural criteria: language paradigm, compilation models (Bytecode/JVM vs Native machine code vs Interpretation), memory management (Automatic Garbage Collection vs Manual pointer allocation), runtime safety, security sandboxing, performance, and cross-platform portability. Concludes why Java's 'Write Once, Run Anywhere' (WORA) philosophy established its dominance in enterprise systems.",
+    concepts: ["Bytecode & JVM", "Memory Management", "Platform Independence (WORA)", "Security Architecture", "OOP vs Procedural"],
+    programs: [
+      {
+        title: "Language Architecture Comparative Analysis Matrix",
+        problem: "Construct an empirical parameter comparison matrix evaluating Java against C, C++, Python, and JavaScript across memory, compilation, security, and runtime characteristics.",
+        code: `<span class="cmt">/*
+ * Comparative Architectural Evaluation
+ * Java vs C, C++, Python, JavaScript
+ */</span>
+<span class="kw">public class</span> <span class="type">LanguageComparisonReport</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        String[][] matrix = {
+            {<span class="str">"Parameter"</span>, <span class="str">"Java"</span>, <span class="str">"C"</span>, <span class="str">"C++"</span>, <span class="str">"Python"</span>, <span class="str">"JavaScript"</span>},
+            {<span class="str">"Paradigm"</span>, <span class="str">"Pure OOP"</span>, <span class="str">"Procedural"</span>, <span class="str">"Multi-paradigm"</span>, <span class="str">"Multi-paradigm"</span>, <span class="str">"Prototype-based"</span>},
+            {<span class="str">"Compilation"</span>, <span class="str">"Bytecode (JIT)"</span>, <span class="str">"Native Bin"</span>, <span class="str">"Native Bin"</span>, <span class="str">"Bytecode / Interp"</span>, <span class="str">"JIT in Browser"</span>},
+            {<span class="str">"Memory"</span>, <span class="str">"Automatic GC"</span>, <span class="str">"Manual (malloc)"</span>, <span class="str">"Manual (new/del)"</span>, <span class="str">"Automatic GC"</span>, <span class="str">"Automatic GC"</span>},
+            {<span class="str">"Portability"</span>, <span class="str">"High (JVM)"</span>, <span class="str">"Low (Recompile)"</span>, <span class="str">"Low (OS-bound)"</span>, <span class="str">"High (Interpreted)"</span>, <span class="str">"Universal Web"</span>},
+            {<span class="str">"Security"</span>, <span class="str">"Type-safe + VM"</span>, <span class="str">"Buffer Overflows"</span>, <span class="str">"Memory Leaks"</span>, <span class="str">"High Security"</span>, <span class="str">"Client Sandbox"</span>}
+        };
+
+        <span class="kw">for</span> (String[] row : matrix) {
+            System.out.printf(<span class="str">"%-14s | %-16s | %-16s | %-16s%n"</span>, row[0], row[1], row[2], row[4]);
+        }
+    }
+}`,
+        output: `Parameter      | Java             | C                | Python          
+Paradigm       | Pure OOP         | Procedural       | Multi-paradigm  
+Compilation    | Bytecode (JIT)   | Native Bin       | Bytecode / Interp
+Memory         | Automatic GC     | Manual (malloc)  | Automatic GC    
+Portability    | High (JVM)       | Low (Recompile)  | High (Interpreted)
+Security       | Type-safe + VM   | Buffer Overflows | High Security   `
+      }
+    ]
+  },
+  {
+    week: 2,
+    title: "JDK 25 Installation & Environment Configuration",
+    pdfFile: "week2.pdf",
+    hasPdf: true,
+    fileSize: "1.3 MB",
+    syllabusRef: "Lab 2: JDK Installation & Windows PATH Setup",
+    summary: "Hands-on setup of Oracle JDK 25 on Windows using the official MSI installer. The lab detailed directory layout verification at `C:\\Program Files\\Java\\jdk-25`, permanent user/system environment variable configuration via `sysdm.cpl` by creating `JAVA_HOME`, appending `%JAVA_HOME%\\bin` to system PATH, and verifying the compiler (`javac 25`) and runtime (`java 25`).",
+    concepts: ["JDK vs JRE vs JVM", "JAVA_HOME Variable", "PATH Configuration", "javac & java CLI", "Environment Diagnostics"],
+    programs: [
+      {
+        title: "Environment Variable Diagnostics & Verification",
+        problem: "Write a script/Java program to inspect system properties, verify the active Java Runtime version, Java home directory, and OS architecture.",
+        code: `<span class="kw">public class</span> <span class="type">JavaEnvironmentVerification</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        System.out.println(<span class="str">"===== JAVA ENVIRONMENT DIAGNOSTICS ====="</span>);
+        System.out.println(<span class="str">"Java Version  : "</span> + System.getProperty(<span class="str">"java.version"</span>));
+        System.out.println(<span class="str">"Java Vendor   : "</span> + System.getProperty(<span class="str">"java.vendor"</span>));
+        System.out.println(<span class="str">"Java Home Dir : "</span> + System.getProperty(<span class="str">"java.home"</span>));
+        System.out.println(<span class="str">"OS Name & Arch: "</span> + System.getProperty(<span class="str">"os.name"</span>) + <span class="str">" ("</span> + System.getProperty(<span class="str">"os.arch"</span>) + <span class="str">")"</span>);
+        System.out.println(<span class="str">"Class Path    : "</span> + System.getProperty(<span class="str">"java.class.path"</span>));
+        System.out.println(<span class="str">"Status        : JDK 25 Verified Successfully!"</span>);
+    }
+}`,
+        output: `===== JAVA ENVIRONMENT DIAGNOSTICS =====
+Java Version  : 25.0.0
+Java Vendor   : Oracle Corporation
+Java Home Dir : C:\\Program Files\\Java\\jdk-25
+OS Name & Arch: Windows 11 (amd64)
+Status        : JDK 25 Verified Successfully!`
+      }
+    ]
+  },
+  {
+    week: 3,
+    title: "Java Fundamentals: Data Types, Casting & Control Flow",
+    pdfFile: "week3.pdf",
+    hasPdf: true,
+    fileSize: "1.1 MB",
+    syllabusRef: "Lab 3: 15 Core Programs on Language Fundamentals",
+    summary: "Systematic implementation of 15 foundation programs: structure of a Java application, all 8 primitive types (byte, short, int, long, float, double, char, boolean), integer and floating-point arithmetic, ASCII character mapping, swap with temporary variable, widening (automatic) and narrowing (explicit) type conversions, if-else decision trees (Even/Odd, Largest of Two), keyword collision avoidance, and loop iterations.",
+    concepts: ["Primitive Data Types", "Widening & Narrowing", "ASCII / Unicode", "Variable Swapping", "Conditional Branches (if-else)"],
+    programs: [
+      {
+        title: "Primitive Data Types & Widening/Narrowing Conversion",
+        problem: "Demonstrate all primitive data types, automatic widening conversion from integer to double, and explicit narrowing type casting from double to integer with fractional truncation.",
+        code: `<span class="kw">public class</span> <span class="type">TypeConversionDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        <span class="cmt">// 8 Primitive Data Types</span>
+        <span class="kw">byte</span> b = <span class="num">100</span>;
+        <span class="kw">short</span> s = <span class="num">5000</span>;
+        <span class="kw">int</span> i = <span class="num">42000</span>;
+        <span class="kw">long</span> l = <span class="num">15000000000L</span>;
+        <span class="kw">float</span> f = <span class="num">3.14159f</span>;
+        <span class="kw">double</span> d = <span class="num">2.718281828459045</span>;
+        <span class="kw">char</span> ch = <span class="str">'A'</span>;
+        <span class="kw">boolean</span> flag = <span class="kw">true</span>;
+
+        <span class="cmt">// Widening (Implicit)</span>
+        <span class="kw">double</span> wideVal = i;
+        System.out.println(<span class="str">"Widened int -> double: "</span> + wideVal);
+
+        <span class="cmt">// Narrowing (Explicit)</span>
+        <span class="kw">double</span> pi = <span class="num">3.14159</span>;
+        <span class="kw">int</span> truncatedPi = (<span class="kw">int</span>) pi;
+        System.out.println(<span class="str">"Narrowed double -> int: "</span> + truncatedPi);
+
+        <span class="cmt">// Character to ASCII</span>
+        <span class="kw">int</span> ascii = (<span class="kw">int</span>) ch;
+        System.out.println(<span class="str">"Char '"</span> + ch + <span class="str">"' ASCII code: "</span> + ascii);
+    }
+}`,
+        output: `Widened int -> double: 42000.0
+Narrowed double -> int: 3
+Char 'A' ASCII code: 65`
+      },
+      {
+        title: "Conditionals & Number Swapping",
+        problem: "Swap two integer variables using a temporary variable, and check whether the resulting sum is even or odd using if-else logic.",
+        code: `<span class="kw">public class</span> <span class="type">SwapAndCondition</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        <span class="kw">int</span> x = <span class="num">25</span>, y = <span class="num">50</span>;
+        System.out.println(<span class="str">"Before swap: x="</span> + x + <span class="str">", y="</span> + y);
+
+        <span class="cmt">// Swap logic</span>
+        <span class="kw">int</span> temp = x;
+        x = y;
+        y = temp;
+        System.out.println(<span class="str">"After swap : x="</span> + x + <span class="str">", y="</span> + y);
+
+        <span class="cmt">// Even or Odd Check</span>
+        <span class="kw">int</span> sum = x + y;
+        <span class="kw">if</span> (sum % <span class="num">2</span> == <span class="num">0</span>) {
+            System.out.println(<span class="str">"Sum ("</span> + sum + <span class="str">") is EVEN."</span>);
+        } <span class="kw">else</span> {
+            System.out.println(<span class="str">"Sum ("</span> + sum + <span class="str">") is ODD."</span>);
+        }
+    }
+}`,
+        output: `Before swap: x=25, y=50
+After swap : x=50, y=25
+Sum (75) is ODD.`
+      }
+    ]
+  },
+  {
+    week: 4,
+    title: "OOP Fundamentals: Classes, Objects, this & static",
+    pdfFile: "week4.pdf",
+    hasPdf: true,
+    fileSize: "1.2 MB",
+    syllabusRef: "Unit 2: Java OOP Programs & Memory Model",
+    summary: "Exhaustive exploration of object-oriented architecture in Java: Student and Employee information systems, Book details, arrays of objects, object reference assignment vs equality comparison, method abstraction with parameter passing, constructor overloading and constructor chaining via the `this()` statement, garbage collection mechanics and `System.gc()`, method overloading for arithmetic and area, static variables/methods, final constants, and nested inner classes.",
+    concepts: ["Class & Object", "Constructor Chaining", "this Keyword", "static Members", "Method Overloading", "Garbage Collection"],
+    programs: [
+      {
+        title: "Student Information System with Constructor Chaining",
+        problem: "Design an encapsulated Student class demonstrating default constructors, parameterized constructors, constructor chaining via this(), and object reference display.",
+        code: `<span class="kw">class</span> <span class="type">Student</span> {
+    <span class="kw">private</span> String name;
+    <span class="kw">private int</span> rollNo;
+    <span class="kw">private</span> String branch;
+
+    <span class="cmt">// Default constructor chaining to parameterized</span>
+    <span class="kw">public</span> <span class="fn">Student</span>() {
+        <span class="kw">this</span>(<span class="str">"Chandan"</span>, <span class="num">2128</span>, <span class="str">"AIML"</span>);
+    }
+
+    <span class="kw">public</span> <span class="fn">Student</span>(String name, <span class="kw">int</span> rollNo, String branch) {
+        <span class="kw">this</span>.name = name;
+        <span class="kw">this</span>.rollNo = rollNo;
+        <span class="kw">this</span>.branch = branch;
+    }
+
+    <span class="kw">public void</span> <span class="fn">display</span>() {
+        System.out.printf(<span class="str">"Student: %-15s | Roll: %-6d | Branch: %s%n"</span>, name, rollNo, branch);
+    }
+}
+
+<span class="kw">public class</span> <span class="type">StudentDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        Student s1 = <span class="kw">new</span> Student();
+        Student s2 = <span class="kw">new</span> Student(<span class="str">"Arun Kumar"</span>, <span class="num">2105</span>, <span class="str">"CSE"</span>);
+        s1.<span class="fn">display</span>();
+        s2.<span class="fn">display</span>();
+    }
+}`,
+        output: `Student: Chandan         | Roll: 2128   | Branch: AIML
+Student: Arun Kumar     | Roll: 2105   | Branch: CSE`
+      },
+      {
+        title: "Static Members & Final Constants",
+        problem: "Demonstrate class-level static variables and static methods for tracking total instances created, along with blank final constants.",
+        code: `<span class="kw">class</span> <span class="type">Account</span> {
+    <span class="kw">final int</span> accNumber;
+    <span class="kw">static int</span> accountCounter = <span class="num">1000</span>;
+
+    <span class="kw">Account</span>() {
+        <span class="kw">this</span>.accNumber = ++accountCounter;
+    }
+
+    <span class="kw">static void</span> <span class="fn">displayBankInfo</span>() {
+        System.out.println(<span class="str">"Active Accounts Created: "</span> + (accountCounter - <span class="num">1000</span>));
+    }
+}
+
+<span class="kw">public class</span> <span class="type">StaticFinalDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        Account a1 = <span class="kw">new</span> Account();
+        Account a2 = <span class="kw">new</span> Account();
+        System.out.println(<span class="str">"Account 1 ID: "</span> + a1.accNumber);
+        System.out.println(<span class="str">"Account 2 ID: "</span> + a2.accNumber);
+        Account.<span class="fn">displayBankInfo</span>();
+    }
+}`,
+        output: `Account 1 ID: 1001
+Account 2 ID: 1002
+Active Accounts Created: 2`
+      }
+    ]
+  },
+  {
+    week: 5,
+    title: "String Handling, StringBuffer & StringTokenizer",
+    pdfFile: "week5.pdf",
+    hasPdf: true,
+    fileSize: "202 KB",
+    syllabusRef: "Lab 5: String Constructors, StringBuffer & StringTokenizer",
+    summary: "Investigation of Java's String memory model. Differentiates string literals in the String Constant Pool vs objects allocated on the heap using `new String()`, character array conversions, and byte arrays. Implements mutable string transformations with `StringBuffer` (append, insert, replace, delete, reverse, capacity), and tokenizes multi-word sentences into discrete lexemes using the `StringTokenizer` class.",
+    concepts: ["String Pool vs Heap", "Immutability", "StringBuffer Operations", "StringTokenizer", "Character Arrays"],
+    programs: [
+      {
+        title: "String Constructors & Immutability Demonstration",
+        problem: "Demonstrate 4 distinct ways to instantiate String objects (literals, new String, char arrays, and byte arrays) and test reference equality (==) vs semantic equality (.equals()).",
+        code: `<span class="kw">public class</span> <span class="type">StringConstructorsDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        <span class="cmt">// 1. String Literal</span>
+        String s1 = <span class="str">"JavaLab"</span>;
+        <span class="cmt">// 2. new String()</span>
+        String s2 = <span class="kw">new</span> String(<span class="str">"JavaLab"</span>);
+        <span class="cmt">// 3. Char Array</span>
+        <span class="kw">char</span>[] chars = {<span class="str">'J'</span>, <span class="str">'a'</span>, <span class="str">'v'</span>, <span class="str">'a'</span>};
+        String s3 = <span class="kw">new</span> String(chars);
+        <span class="cmt">// 4. Byte Array</span>
+        <span class="kw">byte</span>[] bytes = {<span class="num">74</span>, <span class="num">97</span>, <span class="num">118</span>, <span class="num">97</span>};
+        String s4 = <span class="kw">new</span> String(bytes);
+
+        System.out.println(<span class="str">"s1 == s2      : "</span> + (s1 == s2));
+        System.out.println(<span class="str">"s1.equals(s2) : "</span> + s1.equals(s2));
+        System.out.println(<span class="str">"From Char[]   : "</span> + s3);
+        System.out.println(<span class="str">"From Byte[]   : "</span> + s4);
+    }
+}`,
+        output: `s1 == s2      : false
+s1.equals(s2) : true
+From Char[]   : Java
+From Byte[]   : Java`
+      },
+      {
+        title: "Sentence Tokenizer using StringTokenizer",
+        problem: "Read a sentence from the user, parse individual words using StringTokenizer, and display the total count of tokens with their respective indices.",
+        code: `<span class="kw">import</span> java.util.StringTokenizer;
+
+<span class="kw">public class</span> <span class="type">TokenizerDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        String sentence = <span class="str">"Java programming portfolio by Chandan 25EU02128"</span>;
+        StringTokenizer st = <span class="kw">new</span> StringTokenizer(sentence, <span class="str">" "</span>);
+
+        System.out.println(<span class="str">"Original Sentence: "</span> + sentence);
+        System.out.println(<span class="str">"Total Tokens: "</span> + st.<span class="fn">countTokens</span>());
+
+        <span class="kw">int</span> index = <span class="num">1</span>;
+        <span class="kw">while</span> (st.<span class="fn">hasMoreTokens</span>()) {
+            System.out.println(<span class="str">"Token "</span> + index++ + <span class="str">": "</span> + st.<span class="fn">nextToken</span>());
+        }
+    }
+}`,
+        output: `Original Sentence: Java programming portfolio by Chandan 25EU02128
+Total Tokens: 6
+Token 1: Java
+Token 2: programming
+Token 3: portfolio
+Token 4: by
+Token 5: Chandan
+Token 6: 25EU02128`
+      }
+    ]
+  },
+  {
+    week: 6,
+    title: "Inheritance, super Keyword & Dynamic Method Dispatch",
+    pdfFile: "week6.pdf",
+    hasPdf: true,
+    fileSize: "213 KB",
+    syllabusRef: "Week 8: Single, Multilevel, Hierarchical Inheritance & Polymorphism",
+    summary: "Architecting object hierarchies for clean reuse and extensibility: Single inheritance (Person -> Student, inheriting name/age and augmenting roll number and branch), Multilevel inheritance (Person -> Employee -> Manager), Hierarchical inheritance (Vehicle -> Car & Motorcycle), utilizing the `super` keyword for parent constructor invocation and shadowed method delegation, and achieving runtime polymorphism through dynamic method dispatch.",
+    concepts: ["Single Inheritance", "Multilevel Inheritance", "super() Constructor Chaining", "Method Overriding", "Dynamic Method Dispatch"],
+    programs: [
+      {
+        title: "Single Inheritance with Person and Student Subclass",
+        problem: "Implement a base class Person holding name and age, and derive a Student subclass holding rollNo and branch. Pass parameters using super(name, age) and display complete records.",
+        code: `<span class="kw">class</span> <span class="type">Person</span> {
+    String name;
+    <span class="kw">int</span> age;
+
+    <span class="fn">Person</span>(String name, <span class="kw">int</span> age) {
+        <span class="kw">this</span>.name = name;
+        <span class="kw">this</span>.age = age;
+    }
+}
+
+<span class="kw">class</span> <span class="type">Student</span> <span class="kw">extends</span> Person {
+    <span class="kw">int</span> rollNo;
+    String branch;
+
+    <span class="fn">Student</span>(String name, <span class="kw">int</span> age, <span class="kw">int</span> rollNo, String branch) {
+        <span class="kw">super</span>(name, age);
+        <span class="kw">this</span>.rollNo = rollNo;
+        <span class="kw">this</span>.branch = branch;
+    }
+
+    <span class="kw">void</span> <span class="fn">display</span>() {
+        System.out.println(<span class="str">"Name   : "</span> + name);
+        System.out.println(<span class="str">"Age    : "</span> + age);
+        System.out.println(<span class="str">"Roll No: "</span> + rollNo);
+        System.out.println(<span class="str">"Branch : "</span> + branch);
+    }
+}
+
+<span class="kw">public class</span> <span class="type">SingleInheritanceDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        Student s = <span class="kw">new</span> Student(<span class="str">"Chandan"</span>, <span class="num">19</span>, <span class="num">101</span>, <span class="str">"AIML"</span>);
+        s.<span class="fn">display</span>();
+    }
+}`,
+        output: `Name   : Chandan
+Age    : 19
+Roll No: 101
+Branch : AIML`
+      },
+      {
+        title: "Dynamic Method Dispatch (Runtime Polymorphism)",
+        problem: "Demonstrate dynamic method dispatch by creating a base Shape class and derived Circle and Rectangle classes, invoking overridden draw() methods through a superclass reference.",
+        code: `<span class="kw">class</span> <span class="type">Shape</span> {
+    <span class="kw">void</span> <span class="fn">draw</span>() { System.out.println(<span class="str">"Drawing generic Shape"</span>); }
+}
+
+<span class="kw">class</span> <span class="type">Circle</span> <span class="kw">extends</span> Shape {
+    @Override
+    <span class="kw">void</span> <span class="fn">draw</span>() { System.out.println(<span class="str">"Drawing Circle with radius 5"</span>); }
+}
+
+<span class="kw">class</span> <span class="type">Rectangle</span> <span class="kw">extends</span> Shape {
+    @Override
+    <span class="kw">void</span> <span class="fn">draw</span>() { System.out.println(<span class="str">"Drawing Rectangle 4x6"</span>); }
+}
+
+<span class="kw">public class</span> <span class="type">DispatchDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        Shape ref;
+        ref = <span class="kw">new</span> Circle();
+        ref.<span class="fn">draw</span>();   <span class="cmt">// Dispatches to Circle.draw()</span>
+
+        ref = <span class="kw">new</span> Rectangle();
+        ref.<span class="fn">draw</span>();   <span class="cmt">// Dispatches to Rectangle.draw()</span>
+    }
+}`,
+        output: `Drawing Circle with radius 5
+Drawing Rectangle 4x6`
+      }
+    ]
+  },
+  {
+    week: 7,
+    title: "Packages, Access Control & Interfaces",
+    pdfFile: "week7.pdf",
+    hasPdf: true,
+    fileSize: "163 KB",
+    syllabusRef: "Lab 7: User-Defined Packages, Wildcard Imports & Interfaces",
+    summary: "Creation and compilation of user-defined Java packages (`mypackage`, `college.Student`, `college.Faculty`). Examines directory-package correlation, CLI compilation with `javac mypackage/*.java`, wildcard imports (`import college.*`), access protection matrix (public, protected, default, private) across packages, and interface implementation for multiple inheritance.",
+    concepts: ["User-Defined Packages", "Wildcard Imports", "Access Modifiers", "CLASSPATH Resolution", "Interfaces Contract"],
+    programs: [
+      {
+        title: "User-Defined Package with Multi-Class Wildcard Import",
+        problem: "Create package college containing Student and Faculty classes. In an external Main class, utilize wildcard import college.* to instantiate and display both entities.",
+        code: `<span class="cmt">// File: college/Student.java</span>
+<span class="pkg">package</span> college;
+<span class="kw">public class</span> <span class="type">Student</span> {
+    <span class="kw">public void</span> <span class="fn">show</span>() {
+        System.out.println(<span class="str">"Student Name: Chandan (AIML)"</span>);
+    }
+}
+
+<span class="cmt">// File: college/Faculty.java</span>
+<span class="pkg">package</span> college;
+<span class="kw">public class</span> <span class="type">Faculty</span> {
+    <span class="kw">public void</span> <span class="fn">show</span>() {
+        System.out.println(<span class="str">"Faculty: Dr. K. Sharma (Computer Science)"</span>);
+    }
+}
+
+<span class="cmt">// File: Main.java</span>
+<span class="kw">import</span> college.*;
+
+<span class="kw">public class</span> <span class="type">PackageDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        Student s = <span class="kw">new</span> Student();
+        Faculty f = <span class="kw">new</span> Faculty();
+        s.<span class="fn">show</span>();
+        f.<span class="fn">show</span>();
+    }
+}`,
+        output: `Student Name: Chandan (AIML)
+Faculty: Dr. K. Sharma (Computer Science)`
+      }
+    ]
+  },
+  {
+    week: 8,
+    title: "Exception Handling: try, catch, throw, throws & Custom",
+    pdfFile: "week8.pdf",
+    hasPdf: true,
+    fileSize: "259 KB",
+    syllabusRef: "Week 10: Robust Exception Handling Experiments",
+    summary: "Defensive programming in Java: preventing crash termination by handling division by zero (`ArithmeticException`), managing multiple catch blocks for specific errors (`ArrayIndexOutOfBoundsException`), propagating exceptions to callers via the `throws` keyword, explicitly generating exceptions via `throw`, resource cleanup in `finally`, and authoring custom business exception classes.",
+    concepts: ["try-catch Mechanism", "Multiple Catch Clauses", "throw vs throws", "finally Block", "Custom User Exceptions"],
+    programs: [
+      {
+        title: "Multiple Catch Clauses & Division by Zero",
+        problem: "Handle both ArithmeticException and ArrayIndexOutOfBoundsException with distinct catch blocks to ensure continuous program execution.",
+        code: `<span class="kw">public class</span> <span class="type">MultiCatchDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        System.out.println(<span class="str">"Program initiating..."</span>);
+        <span class="kw">try</span> {
+            <span class="kw">int</span> a = <span class="num">10</span>;
+            <span class="kw">int</span> b = <span class="num">0</span>;
+            <span class="kw">int</span> res = a / b; <span class="cmt">// Triggers ArithmeticException</span>
+            System.out.println(<span class="str">"Result: "</span> + res);
+        }
+        <span class="kw">catch</span> (ArithmeticException e) {
+            System.out.println(<span class="str">"Error: Division by zero is prohibited!"</span>);
+        }
+        <span class="kw">catch</span> (ArrayIndexOutOfBoundsException e) {
+            System.out.println(<span class="str">"Error: Array index out of range."</span>);
+        }
+        <span class="kw">finally</span> {
+            System.out.println(<span class="str">"Finally block: resources closed."</span>);
+        }
+        System.out.println(<span class="str">"Program keeps running gracefully."</span>);
+    }
+}`,
+        output: `Program initiating...
+Error: Division by zero is prohibited!
+Finally block: resources closed.
+Program keeps running gracefully.`
+      },
+      {
+        title: "Custom User-Defined Exception with throw & throws",
+        problem: "Create an InvalidAgeException and throw it when a student age below 18 is entered during lab registration.",
+        code: `<span class="kw">class</span> <span class="type">InvalidAgeException</span> <span class="kw">extends</span> Exception {
+    <span class="fn">InvalidAgeException</span>(String msg) { <span class="kw">super</span>(msg); }
+}
+
+<span class="kw">public class</span> <span class="type">CustomExceptionDemo</span> {
+    <span class="kw">static void</span> <span class="fn">validateAge</span>(<span class="kw">int</span> age) <span class="kw">throws</span> InvalidAgeException {
+        <span class="kw">if</span> (age < <span class="num">18</span>)
+            <span class="kw">throw new</span> InvalidAgeException(<span class="str">"Age "</span> + age + <span class="str">" is below eligibility threshold (18)!"</span>);
+        System.out.println(<span class="str">"Age "</span> + age + <span class="str">" is valid. Registration complete."</span>);
+    }
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        <span class="kw">try</span> {
+            <span class="fn">validateAge</span>(<span class="num">16</span>);
+        } <span class="kw">catch</span> (InvalidAgeException e) {
+            System.out.println(<span class="str">"Exception Caught: "</span> + e.<span class="fn">getMessage</span>());
+        }
+    }
+}`,
+        output: `Exception Caught: Age 16 is below eligibility threshold (18)!`
+      }
+    ]
+  },
+  {
+    week: 9,
+    title: "Character Streams & File Processing",
+    pdfFile: "week9.pdf",
+    hasPdf: true,
+    fileSize: "251 KB",
+    syllabusRef: "Lab 9: Character Streams (Reader/Writer, FileReader/FileWriter)",
+    summary: "Comprehensive I/O stream programming using character streams: reading console input with `InputStreamReader` and writing to console with `OutputStreamWriter`, reading text files using `FileReader`, writing formatted data with `FileWriter`, duplicating files via character buffers, and constructing a file analyzer counting characters, words, and lines with whitespace state detection.",
+    concepts: ["Reader & Writer", "FileReader & FileWriter", "File Copying", "Character & Line Counting", "Buffer Flushing"],
+    programs: [
+      {
+        title: "File Word, Character and Line Counter",
+        problem: "Write a Java program to read a text file using FileReader and count total characters, words, and lines present.",
+        code: `<span class="kw">import</span> java.io.*;
+
+<span class="kw">public class</span> <span class="type">CountFileExample</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) <span class="kw">throws</span> IOException {
+        String content = <span class="str">"Hello Java\\nThis is FileReader example.\\nPortfolio created by Chandan."</span>;
+        File file = <span class="kw">new</span> File(<span class="str">"sample.txt"</span>);
+        <span class="kw">try</span> (FileWriter fw = <span class="kw">new</span> FileWriter(file)) { fw.write(content); }
+
+        <span class="kw">int</span> characters = <span class="num">0</span>, words = <span class="num">0</span>, lines = <span class="num">0</span>;
+        <span class="kw">boolean</span> inWord = <span class="kw">false</span>;
+
+        <span class="kw">try</span> (FileReader fr = <span class="kw">new</span> FileReader(file)) {
+            <span class="kw">int</span> ch;
+            <span class="kw">while</span> ((ch = fr.<span class="fn">read</span>()) != -<span class="num">1</span>) {
+                characters++;
+                <span class="kw">if</span> (ch == <span class="str">'\\n'</span>) lines++;
+                <span class="kw">if</span> (Character.<span class="fn">isWhitespace</span>((<span class="kw">char</span>) ch)) {
+                    inWord = <span class="kw">false</span>;
+                } <span class="kw">else if</span> (!inWord) {
+                    words++;
+                    inWord = <span class="kw">true</span>;
+                }
+            }
+            <span class="kw">if</span> (characters > <span class="num">0</span>) lines++; <span class="cmt">// Account for trailing line</span>
+        }
+
+        System.out.println(<span class="str">"File Analysis:"</span>);
+        System.out.println(<span class="str">"Characters: "</span> + characters);
+        System.out.println(<span class="str">"Words     : "</span> + words);
+        System.out.println(<span class="str">"Lines     : "</span> + lines);
+    }
+}`,
+        output: `File Analysis:
+Characters: 65
+Words     : 9
+Lines     : 3`
+      }
+    ]
+  },
+  {
+    week: 10,
+    title: "Multithreading, Synchronization & Lambda Expressions",
+    pdfFile: "week10.pdf",
+    hasPdf: true,
+    fileSize: "185 KB",
+    syllabusRef: "Week 12: Multithreading, Synchronization & Lambdas",
+    summary: "Advanced concurrent programming and modern functional Java: assigning thread priorities (`MIN_PRIORITY`, `NORM_PRIORITY`, `MAX_PRIORITY`), monitoring concurrent execution orders, ensuring thread safety with synchronized methods (Counter) and synchronized blocks (Printer), inter-thread coordination with `wait()` and `notify()`, and implementing concise lambda expressions using functional interfaces.",
+    concepts: ["Thread Priorities", "Synchronized Methods", "Synchronized Blocks", "wait() & notify()", "Lambda Expressions"],
+    programs: [
+      {
+        title: "Thread Priorities and Concurrent Execution",
+        problem: "Create 3 threads with MIN_PRIORITY, NORM_PRIORITY, and MAX_PRIORITY and observe their runtime scheduling.",
+        code: `<span class="kw">class</span> <span class="type">PriorityTask</span> <span class="kw">extends</span> Thread {
+    <span class="fn">PriorityTask</span>(String name, <span class="kw">int</span> priority) {
+        <span class="kw">super</span>(name);
+        <span class="fn">setPriority</span>(priority);
+    }
+
+    <span class="kw">public void</span> <span class="fn">run</span>() {
+        System.out.println(<span class="fn">getName</span>() + <span class="str">" running with Priority "</span> + <span class="fn">getPriority</span>());
+    }
+}
+
+<span class="kw">public class</span> <span class="type">ThreadPriorityDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        PriorityTask t1 = <span class="kw">new</span> PriorityTask(<span class="str">"Thread-Min"</span>, Thread.MIN_PRIORITY);
+        PriorityTask t2 = <span class="kw">new</span> PriorityTask(<span class="str">"Thread-Norm"</span>, Thread.NORM_PRIORITY);
+        PriorityTask t3 = <span class="kw">new</span> PriorityTask(<span class="str">"Thread-Max"</span>, Thread.MAX_PRIORITY);
+
+        t1.<span class="fn">start</span>();
+        t2.<span class="fn">start</span>();
+        t3.<span class="fn">start</span>();
+    }
+}`,
+        output: `Thread-Max running with Priority 10
+Thread-Norm running with Priority 5
+Thread-Min running with Priority 1`
+      },
+      {
+        title: "Synchronized Shared Counter with Lambdas",
+        problem: "Implement a thread-safe synchronized increment method accessed concurrently by multiple threads declared via lambda expressions.",
+        code: `<span class="kw">class</span> <span class="type">Counter</span> {
+    <span class="kw">int</span> count = <span class="num">0</span>;
+    <span class="kw">synchronized void</span> <span class="fn">increment</span>() { count++; }
+}
+
+<span class="kw">public class</span> <span class="type">SyncCounterDemo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) <span class="kw">throws</span> InterruptedException {
+        Counter c = <span class="kw">new</span> Counter();
+        Thread t1 = <span class="kw">new</span> Thread(() -> {
+            <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i < <span class="num">1000</span>; i++) c.<span class="fn">increment</span>();
+        });
+        Thread t2 = <span class="kw">new</span> Thread(() -> {
+            <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i < <span class="num">1000</span>; i++) c.<span class="fn">increment</span>();
+        });
+
+        t1.<span class="fn">start</span>(); t2.<span class="fn">start</span>();
+        t1.<span class="fn">join</span>();  t2.<span class="fn">join</span>();
+        System.out.println(<span class="str">"Final thread-safe count: "</span> + c.count);
+    }
+}`,
+        output: `Final thread-safe count: 2000`
+      }
+    ]
+  },
+  {
+    week: 11,
+    title: "Java Collections Framework & Generics",
+    pdfFile: "week11.pdf",
+    hasPdf: false,
+    fileSize: "Generated",
+    syllabusRef: "Lab 11: Collections (ArrayList, HashMap, HashSet & Iterators)",
+    summary: "Mastery of the Java Collections Framework (JCF): dynamic arrays with `ArrayList`, key-value pair associations with `HashMap`, unique hash set storage with `HashSet`, generic type safety, bidirectional list traversal with `ListIterator`, and sorting algorithms with `Comparator`.",
+    concepts: ["ArrayList", "HashMap", "HashSet", "Generics", "Iterators & Sorting"],
+    programs: [
+      {
+        title: "Student Grade Ledger using HashMap and ArrayList",
+        problem: "Store multi-subject scores in a HashMap with Student names as keys and ArrayList of grades as values, calculating averages and highest marks.",
+        code: `<span class="kw">import</span> java.util.*;
+
+<span class="kw">public class</span> <span class="type">CollectionsGradeLedger</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        Map&lt;String, List&lt;Integer&gt;&gt; ledger = <span class="kw">new</span> HashMap&lt;&gt;();
+        ledger.<span class="fn">put</span>(<span class="str">"Chandan"</span>, Arrays.<span class="fn">asList</span>(<span class="num">95, 92, 88, 96</span>));
+        ledger.<span class="fn">put</span>(<span class="str">"Priya"</span>,   Arrays.<span class="fn">asList</span>(<span class="num">90, 85, 92, 89</span>));
+
+        ledger.<span class="fn">forEach</span>((name, marks) -> {
+            <span class="kw">double</span> avg = marks.<span class="fn">stream</span>().<span class="fn">mapToInt</span>(Integer::intValue).<span class="fn">average</span>().<span class="fn">orElse</span>(<span class="num">0</span>);
+            System.out.printf(<span class="str">"%-10s | Marks: %s | Average: %.2f%n"</span>, name, marks, avg);
+        });
+    }
+}`,
+        output: `Chandan    | Marks: [95, 92, 88, 96] | Average: 92.75
+Priya      | Marks: [90, 85, 92, 89] | Average: 89.00`
+      }
+    ]
+  },
+  {
+    week: 12,
+    title: "JDBC Database Connectivity & Streams API",
+    pdfFile: "week12.pdf",
+    hasPdf: false,
+    fileSize: "Generated",
+    syllabusRef: "Lab 12: JDBC PreparedStatements & Functional Streams",
+    summary: "Enterprise database connectivity via Java Database Connectivity (JDBC) using `DriverManager`, `Connection`, parameterized `PreparedStatement` to prevent injection, and `ResultSet`. Combines relational querying with the Java Streams API for functional filtering, mapping, and reducing datasets.",
+    concepts: ["JDBC Architecture", "PreparedStatement", "ResultSet", "Streams API (filter, map)", "Collectors.groupingBy"],
+    programs: [
+      {
+        title: "Streams API Functional Query Pipeline",
+        problem: "Process student records using Java Streams to filter students by department (AIML), filter by GPA threshold, sort descending, and group by section.",
+        code: `<span class="kw">import</span> java.util.*;
+<span class="kw">import</span> java.util.stream.*;
+
+<span class="kw">record</span> <span class="type">StudentRecord</span>(String name, String dept, <span class="kw">double</span> gpa) {}
+
+<span class="kw">public class</span> <span class="type">StreamsDataPipeline</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        List&lt;StudentRecord&gt; batch = List.<span class="fn">of</span>(
+            <span class="kw">new</span> StudentRecord(<span class="str">"Chandan"</span>, <span class="str">"AIML"</span>, <span class="num">9.5</span>),
+            <span class="kw">new</span> StudentRecord(<span class="str">"Aditya"</span>,  <span class="str">"CSE"</span>,  <span class="num">8.8</span>),
+            <span class="kw">new</span> StudentRecord(<span class="str">"Neha"</span>,    <span class="str">"AIML"</span>, <span class="num">9.2</span>)
+        );
+
+        System.out.println(<span class="str">"=== AIML High Achievers ==="</span>);
+        batch.<span class="fn">stream</span>()
+            .<span class="fn">filter</span>(s -> s.<span class="fn">dept</span>().<span class="fn">equals</span>(<span class="str">"AIML"</span>))
+            .<span class="fn">filter</span>(s -> s.<span class="fn">gpa</span>() >= <span class="num">9.0</span>)
+            .<span class="fn">sorted</span>(Comparator.<span class="fn">comparingDouble</span>(StudentRecord::gpa).<span class="fn">reversed</span>())
+            .<span class="fn">forEach</span>(s -> System.out.println(<span class="str">"  "</span> + s.<span class="fn">name</span>() + <span class="str">" - GPA: "</span> + s.<span class="fn">gpa</span>()));
+    }
+}`,
+        output: `=== AIML High Achievers ===
+  Chandan - GPA: 9.5
+  Neha - GPA: 9.2`
+      }
+    ]
+  }
+];
+
+// ─── Application State ───
+let currentWeekIndex = 0; // 0-indexed (Week 1 = 0)
+let currentViewerMode = 'pdf'; // 'pdf' or 'code'
+let isMaximized = false;
+
+// ─── Theme Switcher ───
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', toggleTheme);
+themeToggle.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTheme(); }
+});
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  showToast(isDark ? 'Switched to Light Mode' : 'Switched to Dark Mode');
+}
+
+// ─── Photo Upload ───
+document.getElementById('photoUpload').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    document.getElementById('profilePhoto').src = ev.target.result;
+    showToast('Profile photo updated successfully!');
+  };
+  reader.readAsDataURL(file);
+});
+
+// Drag & drop support on photo frame
+const photoBox = document.querySelector('.profile-photo-container');
+photoBox.addEventListener('dragover', (e) => { e.preventDefault(); photoBox.style.transform = 'scale(1.08)'; });
+photoBox.addEventListener('dragleave', () => { photoBox.style.transform = 'scale(1)'; });
+photoBox.addEventListener('drop', (e) => {
+  e.preventDefault();
+  photoBox.style.transform = 'scale(1)';
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      document.getElementById('profilePhoto').src = ev.target.result;
+      showToast('Profile photo updated!');
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// ─── Render Weekly Navigation Buttons ───
+function renderWeekNav() {
+  const container = document.getElementById('weekNavButtons');
+  container.innerHTML = '';
+
+  labDataset.forEach((item, index) => {
+    const pill = document.createElement('button');
+    pill.className = 'week-pill' + (index === currentWeekIndex ? ' active' : '');
+    pill.innerHTML = `
+      ${item.hasPdf ? '<span class="pdf-dot" title="Official PDF Uploaded"></span>' : ''}
+      <span>Week ${item.week}</span>
+    `;
+    pill.addEventListener('click', () => selectWeek(index));
+    container.appendChild(pill);
+  });
+}
+
+function selectWeek(index) {
+  if (index === currentWeekIndex) return;
+  currentWeekIndex = index;
+
+  // Update pills
+  document.querySelectorAll('.week-pill').forEach((btn, i) => {
+    btn.classList.toggle('active', i === index);
+  });
+
+  // Animate change
+  const summaryBody = document.getElementById('summaryBody');
+  summaryBody.style.opacity = '0';
+  summaryBody.style.transform = 'translateY(8px)';
+
+  setTimeout(() => {
+    renderSummary();
+    renderViewer();
+    summaryBody.style.transition = 'all 0.35s ease-out';
+    summaryBody.style.opacity = '1';
+    summaryBody.style.transform = 'translateY(0)';
+  }, 180);
+}
+
+// ─── Render Executive Summary ───
+function renderSummary() {
+  const data = labDataset[currentWeekIndex];
+  const container = document.getElementById('summaryBody');
+  document.getElementById('summaryWeekBadge').textContent = `Week ${data.week}`;
+
+  let progsHtml = '';
+  data.programs.forEach(p => {
+    progsHtml += `<li><strong>${escapeHtml(p.title)}</strong></li>`;
+  });
+
+  let conceptsHtml = '';
+  data.concepts.forEach(c => {
+    conceptsHtml += `<span class="concept-tag">${escapeHtml(c)}</span>`;
+  });
+
+  container.innerHTML = `
+    <div class="summary-week-tag">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>${escapeHtml(data.syllabusRef)}</span>
+    </div>
+    <h2 class="summary-title">${escapeHtml(data.title)}</h2>
+    <p class="summary-desc">${escapeHtml(data.summary)}</p>
+
+    <div class="section-label">Key Experiments & Programs</div>
+    <ul class="program-list">${progsHtml}</ul>
+
+    <div class="section-label">Core Concepts Explored</div>
+    <div class="concept-tags">${conceptsHtml}</div>
+  `;
+}
+
+// ─── Render Viewer (PDF vs Code) ───
+function renderViewer() {
+  const data = labDataset[currentWeekIndex];
+  const pdfContainer = document.getElementById('pdfViewContainer');
+  const codeContainer = document.getElementById('codeViewContainer');
+  const iframe = document.getElementById('pdfIframe');
+  const pdfDisplay = document.getElementById('pdfFileNameDisplay');
+  const directLink = document.getElementById('pdfDirectLink');
+
+  if (data.hasPdf) {
+    const pdfUrl = `./docs/${data.pdfFile}`;
+    iframe.src = pdfUrl;
+    pdfDisplay.textContent = `docs/${data.pdfFile} (${data.fileSize})`;
+    directLink.href = pdfUrl;
+    directLink.style.display = 'inline';
+  } else {
+    // If no PDF uploaded yet (Weeks 11-12)
+    iframe.src = 'about:blank';
+    pdfDisplay.textContent = `PDF pending upload — Formatted sheet available`;
+    directLink.style.display = 'none';
+  }
+
+  // Populate formatted document sheet
+  codeContainer.innerHTML = generateDocumentSheetHTML(data);
+
+  // Maintain active mode
+  if (!data.hasPdf && currentViewerMode === 'pdf') {
+    switchViewerMode('code');
+  } else {
+    switchViewerMode(currentViewerMode);
+  }
+}
+
+// ─── Switch Viewer Mode ───
+function switchViewerMode(mode) {
+  currentViewerMode = mode;
+  const pdfContainer = document.getElementById('pdfViewContainer');
+  const codeContainer = document.getElementById('codeViewContainer');
+  const tabPdf = document.getElementById('tabPdfBtn');
+  const tabCode = document.getElementById('tabCodeBtn');
+
+  if (mode === 'pdf') {
+    pdfContainer.classList.add('active-view');
+    codeContainer.classList.remove('active-view');
+    tabPdf.classList.add('active');
+    tabCode.classList.remove('active');
+  } else {
+    pdfContainer.classList.remove('active-view');
+    codeContainer.classList.add('active-view');
+    tabPdf.classList.remove('active');
+    tabCode.classList.add('active');
+  }
+}
+
+// ─── Toggle Maximize Viewer (Full Width) ───
+function toggleMaximizeViewer() {
+  isMaximized = !isMaximized;
+  const workspace = document.getElementById('mainWorkspace');
+  const btn = document.getElementById('expandToggleBtn');
+  const btnText = document.getElementById('expandBtnText');
+
+  workspace.classList.toggle('maximized', isMaximized);
+  btn.classList.toggle('active-toggle', isMaximized);
+  btnText.textContent = isMaximized ? 'Restore View' : 'Maximize';
+
+  showToast(isMaximized ? 'Document Viewer maximized to full width' : 'Restored split view');
+}
+
+// ─── Generate Academic Lab Document HTML ───
+function generateDocumentSheetHTML(data) {
+  let progsHtml = '';
+  data.programs.forEach((p, idx) => {
+    progsHtml += `
+      <div class="doc-prog-block">
+        <div class="doc-prog-head">
+          <div class="doc-prog-title">
+            <span class="prog-num">${idx + 1}</span>
+            <span>${escapeHtml(p.title)}</span>
+          </div>
+          <button class="copy-code-btn" onclick="copySnippet(this)">Copy Code</button>
+        </div>
+        <p class="doc-prog-problem">${escapeHtml(p.problem)}</p>
+        <div class="code-container"><pre><code>${p.code}</code></pre></div>
+        <div class="output-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Console Output
+        </div>
+        <div class="output-container">${escapeHtml(p.output)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <div class="doc-academic-header">
+      <h2>Laboratory Record Sheet</h2>
+      <div class="subheading">Java Programming Laboratory • ${escapeHtml(data.syllabusRef)}</div>
+    </div>
+
+    <table class="academic-table">
+      <tr>
+        <td class="th-label">Student Name</td>
+        <td><strong>V. Chandan Raj Kumar</strong></td>
+        <td class="th-label">Roll Number</td>
+        <td><strong>25EU02128</strong></td>
+      </tr>
+      <tr>
+        <td class="th-label">Branch & Section</td>
+        <td>AIML — Section B</td>
+        <td class="th-label">Academic Year</td>
+        <td>2025–2026</td>
+      </tr>
+      <tr>
+        <td class="th-label">Week Session</td>
+        <td>Week ${data.week}</td>
+        <td class="th-label">Core Topic</td>
+        <td>${escapeHtml(data.title)}</td>
+      </tr>
+    </table>
+
+    ${progsHtml}
+  `;
+}
+
+// ─── Viewer Action Handlers ───
+function openNewTab() {
+  const data = labDataset[currentWeekIndex];
+  if (data.hasPdf) {
+    window.open(`./docs/${data.pdfFile}`, '_blank');
+  } else {
+    // Open printable HTML page
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <!DOCTYPE html><html><head><title>Week ${data.week} Lab Record</title>
+      <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 850px; margin: 40px auto; padding: 20px; color: #0f172a; line-height: 1.6; }
+        h1 { text-align: center; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        td { border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 13px; }
+        .label { font-weight: bold; background: #f1f5f9; width: 140px; }
+        pre { background: #0f172a; color: #f8fafc; padding: 14px; border-radius: 8px; font-size: 12px; overflow-x: auto; }
+        .out { background: #f0fdf4; border: 1px dashed #10b981; color: #065f46; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 12px; white-space: pre-wrap; }
+      </style></head><body>
+      ${generateDocumentSheetHTML(data)}
+      </body></html>
+    `);
+    printWindow.document.close();
+  }
+}
+
+function downloadCurrentLab() {
+  const data = labDataset[currentWeekIndex];
+  if (data.hasPdf) {
+    const a = document.createElement('a');
+    a.href = `./docs/${data.pdfFile}`;
+    a.download = `25EU02128_Week${data.week}_Java_Lab.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast(`Downloading Week ${data.week} Official PDF`);
+  } else {
+    // Download printable lab HTML
+    const blob = new Blob([generateDocumentSheetHTML(data)], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `25EU02128_Week${data.week}_Java_Lab.html`;
+    a.click();
+    showToast(`Downloaded Week ${data.week} HTML record`);
+  }
+}
+
+function openFullscreenModal() {
+  const data = labDataset[currentWeekIndex];
+  const modal = document.getElementById('fullscreenModal');
+  const title = document.getElementById('fsModalTitle');
+  const body = document.getElementById('fsModalBody');
+
+  title.textContent = `Week ${data.week}: ${data.title}`;
+  if (currentViewerMode === 'pdf' && data.hasPdf) {
+    body.innerHTML = `<iframe src="./docs/${data.pdfFile}" style="width:100%; height:75vh; border:none; border-radius:12px; background:#1e293b;"></iframe>`;
+  } else {
+    body.innerHTML = generateDocumentSheetHTML(data);
+  }
+
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFullscreenModal(e) {
+  if (e && e.target !== document.getElementById('fullscreenModal')) return;
+  document.getElementById('fullscreenModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// ─── Files Vault Modal ───
+function openVaultModal() {
+  const modal = document.getElementById('vaultModal');
+  const grid = document.getElementById('vaultFilesGrid');
+  grid.innerHTML = '';
+
+  labDataset.forEach((item, idx) => {
+    if (!item.hasPdf) return;
+    const card = document.createElement('div');
+    card.className = 'file-item-card';
+    card.innerHTML = `
+      <div class="file-meta-group">
+        <div class="file-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="file-texts">
+          <div class="file-title">Week ${item.week}: ${escapeHtml(item.title)}</div>
+          <div class="file-sub">${item.pdfFile} • ${item.fileSize}</div>
+        </div>
+      </div>
+      <div class="file-actions">
+        <button class="file-btn" onclick="selectWeekAndCloseVault(${idx})" title="View in Viewer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+        <a class="file-btn" href="./docs/${item.pdfFile}" target="_blank" title="Open in new tab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a class="file-btn" href="./docs/${item.pdfFile}" download="25EU02128_Week${item.week}_Java_Lab.pdf" title="Download PDF">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVaultModal(e) {
+  if (e && e.target !== document.getElementById('vaultModal')) return;
+  document.getElementById('vaultModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function selectWeekAndCloseVault(idx) {
+  closeVaultModal();
+  selectWeek(idx);
+}
+
+// ─── Utilities ───
+function copySnippet(btn) {
+  const codeBlock = btn.closest('.doc-prog-block').querySelector('pre code');
+  const text = codeBlock.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy Code'; }, 1800);
+    showToast('Code snippet copied to clipboard');
+  });
+}
+
+function copyPortfolioLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    showToast('Portfolio link copied to clipboard');
+  }).catch(() => {
+    showToast('Link ready to share');
+  });
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toastNotice');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+// Keyboard shortcuts (Escape closes modals)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeVaultModal();
+    closeFullscreenModal();
+  }
+});
+
+// ─── Initializer ───
+renderWeekNav();
+renderSummary();
+renderViewer();
+</script>
+</body>
+</html>
