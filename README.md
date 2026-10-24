@@ -1,6 +1,6 @@
 # Java Programming Lab Record Portfolio ☕
 
-An interactive, responsive single-page **Java Programming Laboratory Portfolio** featuring a modern glassmorphic interface, dark/light theme switching, split-view workspace, embedded PDF viewer, and a dynamic repository of lab records.
+An interactive, responsive single-page **Java Programming Laboratory Portfolio** featuring a modern glassmorphic interface, dark/light theme switching, split-view workspace, embedded PDF viewer, and a rich academic records dashboard.
 
 https://crk2006.github.io/java-lab-portfolio/
 
@@ -10,7 +10,7 @@ https://crk2006.github.io/java-lab-portfolio/
 
 * **Student Name:** V. Chandan Raj Kumar
 * **Roll Number:** `25EU02128`
-* **Department / Branch:** Artificial Intelligence (`AI`)
+* **Department / Branch:** Artificial Intelligence & Machine Learning (`AIML`)
 * **Section:** `B`
 * **Academic Year:** 2025–2026
 * **Course:** Java Programming Laboratory
@@ -86,4 +86,4 @@ java-lab-portfolio/
 
 ## 📜 License
 
-Created for academic submission in the Department of Artificial Intelligence. All rights reserved.
+Created for academic submission in the Department of Computer Science & Engineering / AIML. All rights reserved.
